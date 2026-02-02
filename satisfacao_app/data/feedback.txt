@@ -1,0 +1,27 @@
+ID:1 | Muito satisfeito | 2026-02-02 10:29:46 | Dia:0
+ID:2 | Satisfeito | 2026-02-02 10:30:00 | Dia:0
+ID:3 | Insatisfeito | 2026-02-02 10:30:01 | Dia:0
+ID:4 | Muito satisfeito | 2026-02-02 10:30:02 | Dia:0
+ID:5 | Muito satisfeito | 2026-02-02 10:30:04 | Dia:0
+ID:6 | Satisfeito | 2026-02-02 10:35:31 | Dia:0
+ID:7 | Satisfeito | 2026-02-02 10:35:33 | Dia:0
+ID:8 | Insatisfeito | 2026-02-02 10:35:36 | Dia:0
+ID:9 | Muito satisfeito | 2026-02-02 10:35:42 | Dia:0
+ID:10 | Satisfeito | 2026-02-02 10:35:47 | Dia:0
+ID:11 | Insatisfeito | 2026-02-02 10:35:51 | Dia:0
+ID:12 | Muito satisfeito | 2026-02-02 10:44:44 | Dia:0
+ID:13 | Insatisfeito | 2026-02-02 10:44:45 | Dia:0
+ID:14 | Satisfeito | 2026-02-02 10:44:45 | Dia:0
+ID:15 | Muito satisfeito | 2026-02-02 10:44:46 | Dia:0
+ID:16 | Muito satisfeito | 2026-02-02 10:44:47 | Dia:0
+ID:17 | Insatisfeito | 2026-02-02 10:44:48 | Dia:0
+ID:18 | Insatisfeito | 2026-02-02 10:44:48 | Dia:0
+ID:19 | Insatisfeito | 2026-02-02 10:44:49 | Dia:0
+ID:20 | Insatisfeito | 2026-02-02 10:44:50 | Dia:0
+ID:21 | Satisfeito | 2026-02-02 10:47:17 | Dia:0
+ID:22 | Satisfeito | 2026-02-02 10:47:18 | Dia:0
+ID:23 | Satisfeito | 2026-02-02 10:47:18 | Dia:0
+ID:24 | Satisfeito | 2026-02-02 10:47:19 | Dia:0
+ID:25 | Satisfeito | 2026-02-02 10:47:20 | Dia:0
+ID:26 | Satisfeito | 2026-02-02 10:47:21 | Dia:0
+ID:27 | Satisfeito | 2026-02-02 10:47:22 | Dia:0

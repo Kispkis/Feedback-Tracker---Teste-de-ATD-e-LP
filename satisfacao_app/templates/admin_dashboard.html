@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="admin">
+
+<h1>Dashboard</h1>
+
+<h2>Análise Temporal</h2>
+<form method="get" class="filters">
+<label>Dia 1:</label>
+<input type="date" name="date1" value="{{ date1 }}">
+<label>Dia 2:</label>
+<input type="date" name="date2" value="{{ date2 }}">
+<button>Comparar</button>
+</form>
+
+<h3>Hoje ({{ today }})</h3>
+<pre>{{ stats_today }}</pre>
+
+{% if stats_1 and stats_2 %}
+<h3>Comparação: {{ date1 }} vs {{ date2 }}</h3>
+<p>{{ stats_1 }} VS {{ stats_2 }}</p>
+{% endif %}
+
+<canvas id="bar"></canvas>
+<canvas id="pie"></canvas>
+
+<h2>Histórico</h2>
+<table>
+<tr><th>ID</th><th>Satisfação</th><th>Data</th><th>Hora</th><th>Dia</th></tr>
+{% for r in rows %}
+<tr>
+<td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td><td>{{ r[4] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<div class="pagination">
+{% for p in range(1,total_pages+1) %}
+<a href="?page={{p}}">{{p}}</a>
+{% endfor %}
+</div>
+
+<a href="/export/csv">Exportar CSV</a> |
+<a href="/export/txt">Exportar TXT</a> |
+<a href="/logout">Logout</a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/charts.js"></script>
+<script>
+renderCharts({{ stats_today|tojson }});
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satisfação</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="kiosk">
+
+<div class="kiosk-btn green" onclick="send('Muito satisfeito')">😄<span>Muito satisfeito</span></div>
+<div class="kiosk-btn yellow" onclick="send('Satisfeito')">🙂<span>Satisfeito</span></div>
+<div class="kiosk-btn red" onclick="send('Insatisfeito')">😠<span>Insatisfeito</span></div>
+
+<div id="msg"></div>
+
+<script>
+function send(v){
+    fetch("/submit",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"satisfacao="+v
+    });
+    const msg=document.getElementById("msg");
+    msg.innerText="Obrigado pelo seu feedback!";
+    msg.classList.add("show");
+    setTimeout(()=>msg.classList.remove("show"),2000);
+}
+</script>
+</body>
+</html>
