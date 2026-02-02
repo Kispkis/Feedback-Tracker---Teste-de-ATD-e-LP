@@ -176,6 +176,62 @@ canvas {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* ---------- LOGIN ADMIN ---------- */
+body.admin-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #4caf50, #2196f3);
+    color: #fff;
+}
+
+.login-container {
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-container p {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4caf50;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background: #43a047;
+}
+
 /* ---------- RESPONSIVO ---------- */
 @media (max-width: 768px) {
     .stats-cards {
@@ -193,4 +249,10 @@ canvas {
     }
 
     .kiosk-btn { font-size:3rem; }
+}
+
+@media(max-width:480px){
+    .login-container {
+        padding: 30px 20px;
+    }
 }
