@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Satisfação - Quiosque</title>
+    <!-- Estilos específicos para a interface de quiosque -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="kiosk">
+
+    <!-- Botões grandes para fácil interação tátil no quiosque -->
+    <div class="kiosk-btn green" onclick="send('Muito satisfeito')">😄<span>Muito satisfeito</span></div>
+    <div class="kiosk-btn yellow" onclick="send('Satisfeito')">🙂<span>Satisfeito</span></div>
+    <div class="kiosk-btn red" onclick="send('Insatisfeito')">😠<span>Insatisfeito</span></div>
+
+    <!-- Div para exibição de mensagens de confirmação temporárias -->
+    <div id="msg"></div>
+
+    <script>
+    let canClick = true; // Impede registos duplos acidentais
+
+    /**
+     * Envia o feedback selecionado para o servidor.
+     * @param {string} v - O nível de satisfação selecionado.
+     */
+    function send(v){
+        if(!canClick) return; 
+        canClick = false; 
+
+        // Comunicação assíncrona com o servidor Flask
+        fetch("/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            body: "satisfacao=" + encodeURIComponent(v)
+        })
+        .then(response => {
+            if(response.ok){
+                // Feedback visual de sucesso para o cliente
+                const msg = document.getElementById("msg");
+                msg.innerText = "Muito obrigado pela sua opinião!";
+                msg.classList.add("show");
+
+                // Remove a mensagem e desbloqueia após 2 segundos
+                setTimeout(()=>{
+                    msg.classList.remove("show");
+                    canClick = true; 
+                }, 2000);
+            } else {
+                console.error("Erro ao enviar feedback");
+                canClick = true; 
+            }
+        })
+        .catch(err => {
+            console.error("Erro na ligação:", err);
+            canClick = true; 
+        });
+    }
+    </script>
+
+</body>
+</html>

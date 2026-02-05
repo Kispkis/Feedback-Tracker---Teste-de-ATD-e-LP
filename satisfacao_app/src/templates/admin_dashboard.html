@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Administração</title>
+    <!-- Ligação ao ficheiro CSS global da aplicação -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="admin">
+
+    <h1>Painel de Controlo (Dashboard)</h1>
+
+    <!-- Secção de Análise Temporal com filtros de data -->
+    <h2>Análise Temporal</h2>
+    <form method="get" class="filters">
+        <label>Dia 1:</label>
+        <input type="date" name="date1" value="{{ date1 }}">
+        <label>Dia 2:</label>
+        <input type="date" name="date2" value="{{ date2 }}">
+        <button>Comparar</button>
+    </form>
+
+    <!-- Apresentação dos resultados do dia atual -->
+    <h3>Estatísticas de Hoje ({{ today }})</h3>
+
+    <!-- Comparação entre as duas datas selecionadas, se aplicável -->
+    {% if stats_1 and stats_2 %}
+    <h3>Comparação: {{ date1 }} vs {{ date2 }}</h3>
+    <p>{{ stats_1 }} VS {{ stats_2 }}</p>
+    {% endif %}
+
+    <!-- Espaços para os gráficos dinâmicos (Barra e Circular) -->
+    <canvas id="bar"></canvas>
+    <canvas id="pie"></canvas>
+
+    <!-- Tabela com o histórico completo de feedbacks recebidos -->
+    <h2>Histórico de Feedback</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Satisfação</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Dia da Semana</th>
+        </tr>
+        {% for r in rows %}
+        <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Controlos de navegação para a paginação do histórico -->
+    <div class="pagination">
+        {% for p in range(1, total_pages + 1) %}
+            <a href="?page={{p}}" {% if page == p %}style="background: #4caf50; color: white;"{% endif %}>{{p}}</a>
+        {% endfor %}
+    </div>
+
+    <!-- Ligações para exportação de dados e encerramento de sessão -->
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="/export/csv">Exportar CSV</a> |
+        <a href="/export/txt">Exportar TXT</a> |
+        <a href="/logout">Sair do Painel</a>
+    </div>
+
+    <!-- Scripts externos e locais para funcionamento dos gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/charts.js"></script>
+    <script>
+        // Inicializa os gráficos com os dados processados pelo servidor
+        renderCharts({{ stats_today|tojson }});
+    </script>
+</body>
+</html>
