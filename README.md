@@ -1,7 +1,7 @@
 MANUAL DE INSTRUÇÕES PARA FUNCIONAMENTO DO PROJETO
 
 1. Acessar o link https://satisfacaoapprar--kisalmeida05.replit.app
-2. Para vizualizção da pagina de admin https://satisfacaoapprar--kisalmeida05.replit.app/admin_2026/dashboard
+2. Para vizualizção da pagina de admin https://satisfacaoapprar--kisalmeida05.replit.app/admin_2026
 3. Senha : 1234
 
 Lembrar de dar refresh na base de dados online do replit.
