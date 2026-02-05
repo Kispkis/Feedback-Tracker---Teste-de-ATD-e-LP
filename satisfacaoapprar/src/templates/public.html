@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satisfação</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="kiosk">
+
+<div class="kiosk-btn green" onclick="send('Muito satisfeito')">😄<span>Muito satisfeito</span></div>
+<div class="kiosk-btn yellow" onclick="send('Satisfeito')">🙂<span>Satisfeito</span></div>
+<div class="kiosk-btn red" onclick="send('Insatisfeito')">😠<span>Insatisfeito</span></div>
+
+<div id="msg"></div>
+
+<script>
+let canClick = true; // controla se o usuário pode clicar
+
+function send(v){
+    if(!canClick) return; // bloqueia múltiplos cliques
+    canClick = false; // bloqueia clique
+
+    // Envia para o Flask
+    fetch("/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: "satisfacao=" + encodeURIComponent(v)
+    })
+    .then(response => {
+        if(response.ok){
+            // Mostra mensagem de agradecimento
+            const msg = document.getElementById("msg");
+            msg.innerText = "Obrigado pelo seu feedback!";
+            msg.classList.add("show");
+
+            // Timeout de 2 segundos
+            setTimeout(()=>{
+                msg.classList.remove("show");
+                canClick = true; // libera clique novamente
+            },2000);
+        } else {
+            console.error("Erro ao enviar feedback");
+            canClick = true; // libera clique mesmo com erro
+        }
+    })
+    .catch(err => {
+        console.error("Erro na conexão:", err);
+        canClick = true; // libera clique mesmo com erro
+    });
+}
+</script>
+
+
+</body>
+</html>
